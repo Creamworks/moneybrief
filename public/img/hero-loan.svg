@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 88 82" xmlns="http://www.w3.org/2000/svg" width="78" height="72" style="position:relative;z-index:1;filter:drop-shadow(0 7px 16px rgba(161,120,9,0.32));">
+            <defs>
+              <linearGradient id="ctg" x1="0.25" y1="0" x2="0.75" y2="1"><stop offset="0" stop-color="#FDE68A"/><stop offset="1" stop-color="#FBBF24"/></linearGradient>
+            </defs>
+            <ellipse cx="44" cy="75" rx="24" ry="5" fill="rgba(180,83,9,0.16)"/>
+            <!-- Coin 3 (bottom) -->
+            <path d="M 18,60 A 26,8 0 0,1 70,60 L 70,70 A 26,8 0 0,0 18,70 Z" fill="#92400E"/>
+            <ellipse cx="44" cy="60" rx="26" ry="8" fill="#C97B10"/>
+            <!-- Coin 2 (middle) -->
+            <path d="M 18,50 A 26,8 0 0,1 70,50 L 70,60 A 26,8 0 0,0 18,60 Z" fill="#B45309"/>
+            <ellipse cx="44" cy="50" rx="26" ry="8" fill="#D97706"/>
+            <!-- Coin 1 (top) -->
+            <path d="M 18,40 A 26,8 0 0,1 70,40 L 70,50 A 26,8 0 0,0 18,50 Z" fill="#B45309"/>
+            <ellipse cx="44" cy="40" rx="26" ry="8" fill="url(#ctg)"/>
+            <text x="44" y="40" text-anchor="middle" dominant-baseline="middle" font-size="13" fill="#78350F" font-weight="900" font-family="sans-serif">₩</text>
+            <ellipse cx="31" cy="36" rx="7" ry="2.2" fill="rgba(255,255,255,0.52)" transform="rotate(-22,31,36)"/>
+          </svg>

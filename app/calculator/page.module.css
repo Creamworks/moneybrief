@@ -1,0 +1,489 @@
+/* ============ /calculator — money brief (바로바로론 홈페이지 pc_260728 / Calculator.html) ============ */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ---------- page head ---------- */
+.head {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  padding: 36px 0 0;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.crumb a {
+  color: var(--muted);
+}
+
+.crumb a:hover {
+  color: var(--ink);
+}
+
+.sep {
+  color: #d1d6db;
+}
+
+.crumbCur {
+  color: var(--sub);
+}
+
+.h1 {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.sub {
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  max-width: 560px;
+}
+
+/* ---------- tabs (folder pills) ---------- */
+.tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 999px 999px 0 0;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  background: #f9fafb;
+  color: var(--sub);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background: #eef0f3;
+}
+
+.tabOn,
+.tabOn:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ---------- body ---------- */
+.body {
+  background: #f5f6f8;
+  padding: 32px 0 64px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(25, 31, 40, 0.06);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.cardTitle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.subTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+/* ---------- fields ---------- */
+.field {
+  margin-bottom: 22px;
+}
+
+.flabel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sub);
+}
+
+.val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.unit {
+  font-size: 13px;
+  color: var(--muted);
+  margin-left: 3px;
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--hair);
+  outline: none;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--blue);
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(49, 130, 246, 0.4);
+}
+
+.range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--blue);
+  cursor: pointer;
+  border: 3px solid #fff;
+}
+
+.rangeEnds {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ---------- method segment ---------- */
+.methodBox {
+  margin-top: 4px;
+}
+
+.methodLbl {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sub);
+  margin-bottom: 10px;
+}
+
+.seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: #f2f4f6;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.method {
+  padding: 9px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  width: 100%;
+  background: transparent;
+  color: var(--muted);
+  transition: background 0.14s, color 0.14s;
+}
+
+.methodOn {
+  background: #fff;
+  color: var(--blue);
+  box-shadow: 0 1px 4px rgba(25, 31, 40, 0.1);
+}
+
+/* ---------- result column ---------- */
+.resultCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result {
+  background: #dde8f8;
+  border-radius: 20px;
+  padding: 28px 30px;
+  color: #1e2e4a;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.rmetric {
+  min-width: 0;
+}
+
+.rk {
+  font-size: 12.5px;
+  color: rgba(30, 46, 74, 0.55);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.rv {
+  font-size: clamp(18px, 1.9vw, 25px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  white-space: nowrap; /* 숫자가 중간에서 줄바꿈되지 않도록 */
+}
+
+.rvUnit {
+  font-size: 0.56em;
+  color: rgba(30, 46, 74, 0.55);
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+.resNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(30, 46, 74, 0.15);
+  font-size: 13px;
+  color: rgba(30, 46, 74, 0.6);
+  line-height: 1.55;
+}
+
+.resNote svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: rgba(30, 46, 74, 0.45);
+}
+
+/* ---------- comparison bars ---------- */
+.compare {
+  margin-top: 4px;
+}
+
+.cmpRow {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.cmpRow:last-child {
+  margin-bottom: 0;
+}
+
+.cmpName {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cmpTrack {
+  height: 12px;
+  background: #f2f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cmpFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cmpVal {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sub);
+  text-align: right;
+}
+
+.subNote {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.subNote b {
+  color: var(--sub);
+  font-weight: 700;
+}
+
+/* ---------- DSR bar ---------- */
+.dsrTrack {
+  position: relative;
+  height: 16px;
+  background: #f2f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.dsrFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s, background 0.3s;
+}
+
+.dsrReg {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #191f28;
+}
+
+.dsrScale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  margin-bottom: 16px;
+}
+
+.dsrVerdict {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.dsrVerdict svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ---------- disclaimer ---------- */
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.disclaimer svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ============ responsive ============ */
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  /* 결과 카드가 전체 폭이 되므로 지표 숫자를 편안한 크기로 고정 */
+  .rv {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 680px) {
+  .metrics {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .rv {
+    font-size: 26px;
+  }
+  .cmpRow {
+    grid-template-columns: 72px 1fr auto;
+    gap: 10px;
+  }
+  .cmpName {
+    font-size: 12.5px;
+  }
+  .cmpVal {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .head {
+    padding-top: 28px;
+  }
+  .h1 {
+    font-size: 28px;
+  }
+  .tab {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+  .body {
+    padding: 24px 0 44px;
+  }
+  .card,
+  .result {
+    padding: 22px 20px;
+  }
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

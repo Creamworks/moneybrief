@@ -1,0 +1,545 @@
+/* ============ /about (운영원칙) — ported from design-reference/CreditNote 운영원칙.html ============ */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ---------- HERO / 운영철학 ---------- */
+.hero {
+  padding: 48px 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--hair);
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.crumb a:hover {
+  color: var(--blue);
+}
+
+.crumb svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+.kicker {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--coral);
+  letter-spacing: 0.04em;
+}
+
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--coral);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* hero(#philosophy) kicker: navy pill + coral dot (ref lines 74-75) */
+.heroKicker {
+  background: #314360;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.heroKicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.74fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 6px;
+}
+
+/* 고정 높이 제거: 히어로 본문이 250px보다 길어 아래 accent 문구와 겹치던 문제 해결 */
+.heroCopy {
+  min-width: 0;
+}
+
+.heroCopy h1 {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  line-height: 1.38;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-top: 24px;
+}
+
+.lead {
+  font-size: 17.5px;
+  line-height: 1.9;
+  color: #36455f;
+  margin-top: 26px;
+}
+
+.lead p {
+  margin-bottom: 20px;
+}
+
+.lead p:last-child {
+  margin-bottom: 0;
+}
+
+.lead b {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -34px rgba(21, 41, 74, 0.3);
+}
+.media img {
+  object-fit: cover;
+}
+
+.accent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  margin: 34px auto 6px;
+}
+
+.a1 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.a2 {
+  font-size: 18.5px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.7;
+  display: inline;
+  background-image: linear-gradient(
+    transparent 58%,
+    rgba(240, 113, 78, 0.34) 58%,
+    rgba(240, 113, 78, 0.34) 92%,
+    transparent 92%
+  );
+  background-repeat: no-repeat;
+  padding: 0 2px;
+}
+
+/* ---------- SECTION shell ---------- */
+.block {
+  padding: 48px 0;
+}
+
+.protect {
+  background: var(--white);
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+}
+
+.secHead {
+  margin-bottom: 44px;
+}
+
+.secHead .kicker {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.secHead h2 {
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin: 0;
+}
+
+.secHead p {
+  font-size: 17px;
+  color: var(--gray);
+  margin-top: 13px; /* ref inline: margin:13px 0 0 */
+  max-width: 640px;
+}
+
+/* 보호정책 섹션 h2는 원본 인라인이 28px (다른 섹션은 29px) */
+.protect .secHead h2 {
+  font-size: 28px;
+}
+
+/* ---------- 제작 원칙 ---------- */
+.principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.principle {
+  background: var(--white);
+  border: 1px solid var(--hair);
+  border-radius: 16px;
+  padding: 34px;
+  transition: box-shadow 0.16s, transform 0.16s;
+}
+
+.principle:hover {
+  box-shadow: 0 24px 46px -30px rgba(21, 41, 74, 0.3);
+  transform: translateY(-3px);
+}
+
+.ptop {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.ptop > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.pico {
+  width: 47px;
+  height: 47px;
+  border-radius: 12px;
+  background: var(--tint);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-shadow: 0 5px 10px -5px rgba(30, 111, 181, 0.35);
+}
+
+.pico svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pnum {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9aa4b2;
+  font-feature-settings: "tnum" 1;
+  line-height: 1;
+}
+
+.principle h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.ptag {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--coral);
+  line-height: 1.3;
+  padding-top: 8px;
+}
+
+.principle > p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #46556e;
+  padding-left: 63px;
+}
+
+/* ---------- 보호정책 ---------- */
+.protectGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.protectItem {
+  display: flex;
+  gap: 18px;
+  padding: 30px;
+  background: var(--base);
+  border-radius: 16px;
+}
+
+.mico {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-shadow: 0 4px 12px -6px rgba(30, 111, 181, 0.3);
+}
+
+.mico svg {
+  width: 23px;
+  height: 23px;
+}
+
+.protectItem h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 9px;
+  letter-spacing: -0.02em;
+}
+
+.protectItem p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #46556e;
+}
+
+.hl {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.reportCallout {
+  margin-top: 26px;
+  background: #fff6f2;
+  border: 1px solid #f8dace;
+  border-radius: 16px;
+  padding: 24px 30px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.rcIco {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--coral);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-shadow: 0 5px 10px -5px rgba(240, 113, 78, 0.45);
+}
+
+.rcIco svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rcTxt {
+  flex: 1;
+  min-width: 240px;
+}
+
+.rcTxt h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #9a4a30;
+  margin-bottom: 4px;
+}
+
+.rcTxt p {
+  font-size: 14.5px;
+  color: #7a4b38;
+  line-height: 1.6;
+}
+
+.rcNum {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--coral);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* ---------- 운영사 정보 ---------- */
+.companyGrid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.ctable {
+  background: var(--white);
+  border: 1px solid var(--hair);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.crow {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  border-bottom: 1px solid var(--hair);
+}
+
+.crow:last-child {
+  border-bottom: none;
+}
+
+.ck {
+  background: #fbfcfe;
+  padding: 18px 24px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.cv {
+  padding: 18px 24px;
+  font-size: 15.5px;
+  color: #33425c;
+}
+
+.companyNote {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 18px;
+  padding: 32px 30px;
+}
+
+.companyNote h3 {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.02em;
+}
+
+.companyNote h3 svg {
+  width: 20px;
+  height: 20px;
+  color: #7fb4e4;
+  flex: none;
+}
+
+.companyNote p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #c2cfe2;
+  font-weight: 400;
+}
+
+.noteHl {
+  background-image: linear-gradient(
+    transparent 58%,
+    rgba(127, 180, 228, 0.45) 58%
+  );
+  padding: 0 2px;
+}
+
+/* ============ responsive — main breakpoint 768px ============ */
+@media (max-width: 768px) {
+  .heroGrid,
+  .principles,
+  .protectGrid,
+  .companyGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroGrid {
+    gap: 30px;
+  }
+  .heroCopy {
+    height: auto; /* release desktop fixed height so mobile text doesn't overlap */
+  }
+  .media {
+    order: -1;
+    height: 300px;
+  }
+  .heroCopy h1 {
+    font-size: 30px;
+  }
+  .a1 {
+    font-size: 18px;
+    white-space: normal;
+  }
+  .principle > p {
+    padding-left: 0;
+  }
+}
+
+/* ---- small phone refinement (carried from reference @600) ---- */
+@media (max-width: 600px) {
+  .heroCopy h1 {
+    font-size: 27px;
+  }
+  .lead {
+    font-size: 16.5px;
+  }
+  .media {
+    height: 240px;
+  }
+  .secHead {
+    margin-bottom: 30px;
+  }
+  .secHead h2 {
+    font-size: 25px;
+  }
+  .principle {
+    padding: 26px 22px;
+  }
+  .principle h3 {
+    font-size: 20px;
+  }
+  .protectItem {
+    padding: 24px 20px;
+  }
+  .reportCallout {
+    padding: 20px 22px;
+  }
+  .rcNum {
+    font-size: 22px;
+  }
+  .crow {
+    grid-template-columns: 118px 1fr;
+  }
+  .ck,
+  .cv {
+    padding: 14px 15px;
+    font-size: 14px;
+  }
+  .companyNote {
+    padding: 26px 24px;
+  }
+}
