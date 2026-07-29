@@ -167,6 +167,27 @@
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+/* 본문 삽입 이미지: 반응형 + 정돈 (넘침 방지, 둥근 모서리, 중앙 정렬) */
+.body :global(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  margin: 28px auto;
+}
+.body :global(figure) {
+  margin: 28px 0;
+}
+.body :global(figure img) {
+  margin: 0 auto;
+}
+.body :global(figcaption) {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+}
 .body p {
   margin: 0 0 26px;
 }
