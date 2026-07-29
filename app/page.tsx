@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/lib/wp";
 
@@ -377,8 +378,13 @@ export default async function Home() {
                     <span className={styles.thumbPill} style={{ color: c.fg }}>
                       {p.cat}
                     </span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.image || catImage(p.cat)} alt="" />
+                    <Image
+                      src={p.image || catImage(p.cat)}
+                      alt=""
+                      fill
+                      sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
+                    />
                   </div>
                   <div className={styles.rcBody}>
                     <h3>{p.title}</h3>
@@ -421,8 +427,13 @@ export default async function Home() {
                   >
                     {feat.cat}
                   </span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={feat.image || catImage(feat.cat)} alt="" />
+                  <Image
+                    src={feat.image || catImage(feat.cat)}
+                    alt=""
+                    fill
+                    sizes="(max-width: 960px) 100vw, 55vw"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div className={styles.featBody}>
                   <div className={styles.metaRow}>

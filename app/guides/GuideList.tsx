@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { catImage } from "@/lib/wp";
 
@@ -245,8 +246,13 @@ export default function GuideList({
                 <span className={styles.thumbPill} style={{ color: metaOf(feat.cat).fg }}>
                   {feat.cat}
                 </span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={feat.image || catImage(feat.cat)} alt="" />
+                <Image
+                  src={feat.image || catImage(feat.cat)}
+                  alt=""
+                  fill
+                  sizes="(max-width: 960px) 100vw, 55vw"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div className={styles.featBody}>
                 <Meta g={feat} />
@@ -296,8 +302,13 @@ export default function GuideList({
                         <span className={styles.thumbPill} style={{ color: m.fg }}>
                           {g.cat}
                         </span>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={g.image || catImage(g.cat)} alt="" />
+                        <Image
+                          src={g.image || catImage(g.cat)}
+                          alt=""
+                          fill
+                          sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                          style={{ objectFit: "cover" }}
+                        />
                       </div>
                       <div className={styles.cbody}>
                         <h3>{g.title}</h3>
