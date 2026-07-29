@@ -385,20 +385,34 @@
   .companyGrid {
     grid-template-columns: 1fr;
   }
+  .hero {
+    padding: 28px 0 44px;
+  }
   .heroArt {
     order: -1;
-    aspect-ratio: 16 / 10;
-    max-height: 320px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
   }
   .heroArt img {
-    width: auto;
-    height: 82%;
+    width: 88%;
+    height: auto;
+  }
+  .block {
+    padding: 56px 0;
   }
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding: 22px 0 40px;
+  }
   .block {
     padding: 44px 0;
+  }
+  .secHead {
+    margin-bottom: 30px;
   }
   .h1 {
     font-size: 28px;
@@ -406,24 +420,47 @@
   .secHead h2 {
     font-size: 24px;
   }
+  .accent {
+    padding: 22px 22px;
+  }
+  .a1 {
+    font-size: 18px;
+  }
+  .heroArt {
+    max-width: 260px;
+  }
   .principle,
   .protectItem {
     padding: 22px 22px;
   }
+  .protectItem {
+    gap: 14px;
+  }
   .report {
     gap: 12px;
+    padding: 20px 22px;
   }
   .rNum {
     font-size: 26px;
   }
   .crow {
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 104px 1fr;
   }
   .ck,
   .cv {
-    padding: 13px 15px;
+    padding: 13px 14px;
+    font-size: 13px;
   }
   .companyNote {
     padding: 26px 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .h1 {
+    font-size: 25px;
+  }
+  .secHead h2 {
+    font-size: 22px;
   }
 }

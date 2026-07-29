@@ -666,36 +666,113 @@
     align-items: flex-start;
     gap: 28px;
   }
+  .heroCopy {
+    max-width: none;
+    width: 100%;
+  }
   .heroArt {
     align-self: center;
   }
+  .h1 {
+    font-size: 34px;
+  }
   .grid2 {
     grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 60px 0;
   }
 }
 
 @media (max-width: 600px) {
   .section {
-    padding: 52px 0;
+    padding: 48px 0;
+    scroll-margin-top: 104px;
+  }
+  .secHead {
+    margin-bottom: 32px;
   }
   .hero {
-    padding: 40px 0 44px;
+    padding: 36px 0 40px;
   }
   .h1 {
-    font-size: 30px;
+    font-size: 28px;
+  }
+  .heroDesc {
+    font-size: 14.5px;
+  }
+  .heroArt img {
+    width: 190px;
+    height: 190px;
+  }
+  .quizCard {
+    padding: 13px 16px;
+  }
+  .quizText {
+    font-size: 13.5px;
   }
   .secTitle {
-    font-size: 25px;
+    font-size: 24px;
+  }
+  .secDesc {
+    font-size: 14px;
+  }
+  .mythCard {
+    padding: 22px 20px 20px;
+  }
+  .dangerCard {
+    padding: 20px 20px;
+    gap: 14px;
+  }
+  /* 비교표: 좁은 화면에서 넘칠 경우 가로 스크롤 + 폰트 축소 */
+  .tableWrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table {
+    min-width: 460px;
   }
   .table th,
   .table td {
     padding: 12px 14px;
-    font-size: 12.5px;
+    font-size: 13px;
   }
-  .table th:first-child {
-    width: 92px;
+  .table th:first-child,
+  .table td:first-child {
+    width: 96px;
+  }
+  .checkItem {
+    padding: 15px 16px;
+  }
+  .faqQ {
+    padding: 18px 18px;
+  }
+  .faqA {
+    padding: 16px 18px 20px;
+  }
+  .cta {
+    padding: 56px 0;
   }
   .ctaTitle {
-    font-size: 26px;
+    font-size: 25px;
+  }
+  .ctaDesc {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .h1 {
+    font-size: 25px;
+  }
+  .heroArt img {
+    width: 160px;
+    height: 160px;
+  }
+  .secTitle {
+    font-size: 22px;
+  }
+  .ctaTitle {
+    font-size: 22px;
   }
 }
