@@ -56,7 +56,7 @@ export default function Footer() {
               />
             </div>
             <p className={styles.rel}>
-              money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠입니다.
+              money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠예요.
             </p>
           </div>
           <div className={styles.company}>
@@ -71,8 +71,8 @@ export default function Footer() {
               등록업체 확인·신고 금융감독원 : 1332
             </p>
             <p className={styles.protect}>
-              과도한 빚은 신용등급 하락 등 불이익을 초래할 수 있습니다.
-              <br />본 콘텐츠는 금융정보 제공을 목적으로 작성되었습니다.
+              과도한 빚은 신용등급 하락 등 불이익을 초래할 수 있어요.
+              <br />본 콘텐츠는 금융정보 제공을 목적으로 작성되었어요.
             </p>
           </div>
         </div>

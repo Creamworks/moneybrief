@@ -8,7 +8,7 @@ import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/l
 export const metadata: Metadata = {
   title: "money brief — 금융교육 콘텐츠 허브",
   description:
-    "money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠입니다. 대부업·신용·정부지원을 쉬운 말로, 정확하게 알려드립니다.",
+    "money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠예요. 대부업·신용·정부지원을 쉬운 말로, 정확하게 알려드려요.",
 };
 
 type WpCat = { id: number; name: string; count?: number };
@@ -122,7 +122,7 @@ const GUIDE_CATS: GuideCat[] = [
   },
   {
     name: "대출상식",
-    desc: "금리·한도·상환 방식까지, 헷갈리는 기본기를 정리합니다",
+    desc: "금리·한도·상환 방식까지, 헷갈리는 기본기를 정리해요",
     fallback: 31,
     icon: (
       <>
@@ -157,7 +157,7 @@ const GUIDE_CATS: GuideCat[] = [
   {
     name: "금융이슈·인사이트",
     short: "금융이슈",
-    desc: "바뀌는 제도와 정책, 내 지갑에 닿는 핵심만 짚어드립니다",
+    desc: "바뀌는 제도와 정책, 내 지갑에 닿는 핵심만 짚어드려요",
     fallback: 15,
     icon: (
       <>
@@ -245,7 +245,7 @@ export default async function Home() {
             <p className={styles.lede}>
               쉽고 정확한 금융 콘텐츠를 한 곳에서.
               <br />
-              대부업·신용·정부지원, <b>money brief</b>가 쉽게 알려드립니다.
+              대부업·신용·정부지원, <b>money brief</b>가 쉽게 알려드려요.
             </p>
             <div className={styles.heroCta}>
               <Link href="/guides" className={styles.btnDark}>
@@ -321,7 +321,7 @@ export default async function Home() {
             <div>
               <span className={styles.secKicker}>금융가이드</span>
               <h2>주제별로 차근차근</h2>
-              <p>한 번에 다 알 필요는 없습니다. 지금 내게 필요한 주제부터 골라 보세요.</p>
+              <p>한 번에 다 알 필요는 없어요. 지금 내게 필요한 주제부터 골라 보세요.</p>
             </div>
             <Link className={styles.moreLink} href="/guides">
               전체 가이드 보기 →
@@ -363,7 +363,11 @@ export default async function Home() {
             <div>
               <span className={styles.secKicker}>새로운 정보</span>
               <h2>금융가이드 최신글</h2>
-              <p>금융 정보는 자주 업데이트됩니다. 최근 올라온 글 중 놓치면 안 될 콘텐츠를 추천합니다.</p>
+              <p>
+                금융 정보는 자주 업데이트돼요.
+                <br />
+                최근 올라온 글 중 놓치면 안 될 콘텐츠를 추천해요.
+              </p>
             </div>
             <Link className={styles.moreLink} href="/guides">
               전체 보기 →
@@ -481,7 +485,7 @@ export default async function Home() {
             <div className={styles.calcLeft}>
               <span className={styles.secKicker}>금융계산기</span>
               <h2>숫자로 먼저 확인하세요</h2>
-              <p>막연한 불안 대신 정확한 숫자로. 빌리기 전에 부담을 직접 계산해 보세요.</p>
+              <p>대출 실행 전, 막연한 불안 대신 정확한 숫자로 직접 확인해 보세요.</p>
               <div className={styles.calcSample}>
                 <span className={styles.lbl}>월 상환액 예시</span>
                 <span className={`${styles.val} tnum`}>428,300</span>

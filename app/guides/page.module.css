@@ -295,6 +295,13 @@
   margin: 0;
 }
 
+.gridCount {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 6px;
+}
+
 .sort {
   display: flex;
   align-items: center;

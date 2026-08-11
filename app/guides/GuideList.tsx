@@ -71,7 +71,7 @@ const CAT_META: Record<string, Meta> = {
     fg: "#3182F6",
     bg: "#EBF3FF",
     grad: "linear-gradient(135deg,#EBF3FF 0%,#DEEEFF 60%,#E8F4FF 100%)",
-    desc: "신용부터 사기 예방까지, 검증된 정보형 금융 콘텐츠를 한곳에 모았습니다.",
+    desc: "신용부터 사기 예방까지, 검증된 정보형 콘텐츠를 한곳에 모았어요.",
     short: "지금 내게 필요한 주제부터 골라 보세요.",
   },
   신용관리: {
@@ -79,34 +79,34 @@ const CAT_META: Record<string, Meta> = {
     bg: "#EBF3FF",
     grad: "linear-gradient(135deg,#EBF3FF 0%,#DEEEFF 60%,#E8F4FF 100%)",
     desc: "점수가 매겨지는 원리부터 천천히 끌어올리는 법까지.",
-    short: "신용, 제대로 이해하면 달라집니다.",
+    short: "신용, 제대로 이해하면 달라져요.",
   },
   대출상식: {
     fg: "#7A5CFA",
     bg: "#F0EEFF",
     grad: "linear-gradient(135deg,#F0EEFF 0%,#E7E1FF 60%,#F3EFFF 100%)",
-    desc: "금리·한도·상환 방식까지, 헷갈리는 기본기를 정리합니다.",
-    short: "빌리기 전에 알아야 할 것들.",
+    desc: "금리·한도·상환 방식까지, 헷갈리는 기본기를 정리해요.",
+    short: "빌리기 전에 알아야 할 것들이에요.",
   },
   금융생활: {
     fg: "#1ABAB8",
     bg: "#E6F9F9",
     grad: "linear-gradient(135deg,#E6F9F9 0%,#D6F5F4 60%,#ECFBFB 100%)",
-    desc: "통장 쪼개기부터 비상금까지, 일상에서 쌓는 금융 습관.",
-    short: "작은 습관이 큰 차이를 만듭니다.",
+    desc: "통장 쪼개기부터 비상금까지, 일상에서 쌓는 금융 습관이에요.",
+    short: "작은 습관이 큰 차이를 만들어요.",
   },
   금융사기예방: {
     fg: "#FF6F61",
     bg: "#FFF0EF",
     grad: "linear-gradient(135deg,#FFF0EF 0%,#FFE3E0 60%,#FFF2F1 100%)",
-    desc: "수법을 미리 알면 당하지 않는, 사례로 익히는 분별법.",
+    desc: "수법을 미리 알면 당하지 않는, 사례로 익히는 분별법이에요.",
     short: "한 발 앞서 대비하세요.",
   },
   "금융이슈·인사이트": {
     fg: "#C79100",
     bg: "#FFF8D6",
     grad: "linear-gradient(135deg,#FFF8D6 0%,#FBEFBE 60%,#FFFAE0 100%)",
-    desc: "바뀌는 제도와 정책, 내 지갑에 닿는 핵심만 짚어드립니다.",
+    desc: "바뀌는 제도와 정책, 내 지갑에 닿는 핵심만 짚어드려요.",
     short: "최신 흐름을 놓치지 마세요.",
   },
 };
@@ -198,7 +198,7 @@ export default function GuideList({
                 <span className={styles.eyeDot} style={{ background: meta.fg }} />
                 금융가이드
               </span>
-              <h1 className={styles.h1}>{cat === ALL ? "금융가이드" : cat}</h1>
+              <h1 className={styles.h1}>{cat === ALL ? "주제별 금융 가이드" : cat}</h1>
               <p className={styles.heroDesc}>
                 {meta.desc}
                 <br />
@@ -208,7 +208,9 @@ export default function GuideList({
                 <span className={styles.statBadge} style={{ color: meta.fg }}>
                   <span className="tnum">{total}</span>개 가이드
                 </span>
-                <span className={styles.statSub}>최근 업데이트 2026.07</span>
+                {cat !== ALL && (
+                  <span className={styles.statSub}>최근 업데이트 2026.07</span>
+                )}
               </div>
             </div>
             <div className={styles.heroIcon}>
@@ -240,7 +242,7 @@ export default function GuideList({
       {feat && (
         <div className={styles.blockWhite}>
           <div className={`${styles.wrap} ${styles.featWrap}`}>
-            <div className={styles.featKicker}>추천 아티클</div>
+            <div className={styles.featKicker}>{cat === ALL ? "EDITOR'S PICK" : "추천 아티클"}</div>
             <Link className={styles.feature} href={`/guides/${feat.slug}`}>
               <div className={styles.featImg} style={{ background: metaOf(feat.cat).bg }}>
                 <span className={styles.thumbPill} style={{ color: metaOf(feat.cat).fg }}>
@@ -272,7 +274,18 @@ export default function GuideList({
         <div className={`${styles.wrap} ${styles.gridWrap}`}>
           <div className={styles.gridHead}>
             <h2 className={styles.gridTitle}>
-              전체 <span className="tnum" style={{ color: meta.fg }}>{total}</span>편
+              {cat === ALL ? (
+                <>
+                  전체 가이드{" "}
+                  <span className={styles.gridCount}>
+                    총 <span className="tnum" style={{ color: meta.fg }}>{total}</span>개의 글
+                  </span>
+                </>
+              ) : (
+                <>
+                  전체 <span className="tnum" style={{ color: meta.fg }}>{total}</span>편
+                </>
+              )}
             </h2>
             <div className={styles.sort}>
               <span className={styles.sortLbl}>정렬:</span>
@@ -333,7 +346,7 @@ export default function GuideList({
               )}
             </>
           ) : (
-            <div className={styles.noResult}>등록된 글이 없습니다.</div>
+            <div className={styles.noResult}>등록된 글이 없어요.</div>
           )}
         </div>
       </div>

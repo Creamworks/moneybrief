@@ -150,7 +150,7 @@ export default function Header() {
           </nav>
 
           <div className={styles.gnbCredit}>
-            <span>본 사이트는 ㈜바로크레디트대부가 제작하였습니다.</span>
+            <span>본 사이트는 ㈜바로크레디트대부가 제작하였어요.</span>
           </div>
 
           <button
@@ -299,7 +299,7 @@ export default function Header() {
         </nav>
 
         <div className={styles.overlayFoot}>
-          본 사이트는 ㈜바로크레디트대부가 제작하였습니다.
+          본 사이트는 ㈜바로크레디트대부가 제작하였어요.
         </div>
       </div>
     </>

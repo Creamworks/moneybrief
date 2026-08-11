@@ -43,6 +43,7 @@
   justify-content: center;
 }
 .btnPrimary {
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -63,6 +64,7 @@
   transform: translateY(-1px);
 }
 .btnGhost {
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
   gap: 8px;

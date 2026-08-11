@@ -6,7 +6,7 @@ import { wpFetch, stripHtml, getMediaMap, GUIDE_CATEGORIES } from "@/lib/wp";
 export const metadata: Metadata = {
   title: "주제별 금융 가이드 — money brief",
   description:
-    "신용부터 사기 예방까지, 검증된 정보형 금융 콘텐츠를 한곳에 모았습니다. 주제별로 골라 보세요.",
+    "신용부터 사기 예방까지, 검증된 정보형 콘텐츠를 한곳에 모았어요. 주제별로 골라 보세요.",
 };
 
 type WpCat = { id: number; name: string };

@@ -139,13 +139,13 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
     let primaryK = "매월 상환액", primaryVal = 0, totint = 0, note = "";
     if (loan.method === "annuity") {
       primaryVal = annuityPay(P, i, n); totint = aInt;
-      note = "원리금균등은 매달 같은 금액(원금+이자)을 갚습니다.";
+      note = "원리금균등은 매달 같은 금액(원금+이자)을 갚아요.";
     } else if (loan.method === "principal") {
       primaryVal = P / n + P * i; primaryK = "첫 달 상환액"; totint = pInt;
-      note = "원금균등은 매달 원금을 균등하게 갚아, 초반 부담이 크고 점점 줄어듭니다.";
+      note = "원금균등은 매달 원금을 균등하게 갚아, 초반 부담이 크고 점점 줄어들어요.";
     } else {
       primaryVal = P * i; primaryK = "매월 이자"; totint = bInt;
-      note = "만기일시는 매달 이자만 내고, 만기에 원금 전액을 한 번에 갚습니다.";
+      note = "만기일시는 매달 이자만 내고, 만기에 원금 전액을 한 번에 갚아요.";
     }
     const maxI = Math.max(aInt, pInt, bInt, 1);
     return { P, primaryK, primaryVal, totint, note, aInt, pInt, bInt, maxI };
@@ -218,7 +218,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
             <span className={styles.crumbCur}>금융계산기</span>
           </nav>
           <h1 className={styles.h1}>금융계산기</h1>
-          <p className={styles.sub}>막연한 불안 대신 정확한 숫자로. 빌리기 전에 부담을 직접 확인해 보세요.</p>
+          <p className={styles.sub}>대출 실행 전, 막연한 불안 대신 정확한 숫자로 직접 확인해 보세요.</p>
           <div className={styles.tabs}>
             {TABS.map((t) => (
               <button
@@ -311,7 +311,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                     {cmpBar("bullet", L.bInt, "만기일시")}
                   </div>
                   <p className={styles.subNote}>
-                    같은 금액·금리·기간이라도 상환 방식에 따라 내가 내는 총이자가 달라집니다. 일반적으로 <b>원금을 빨리 갚을수록</b> 총이자는 줄어듭니다.
+                    같은 금액·금리·기간이라도 상환 방식에 따라 내가 내는 총이자가 달라져요. 일반적으로 <b>원금을 빨리 갚을수록</b> 총이자는 줄어들어요.
                   </p>
                 </div>
               </>
@@ -324,7 +324,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                   { k: "총 이자", value: won(I.totInt), unit: "원", color: C_CORAL },
                   { k: "총 상환액", value: won(I.total), unit: "원", color: C_DARK },
                 ]}
-                note={`원리금균등 상환 기준으로, 이자 비중은 약 ${I.ratio.toFixed(1)}%입니다.`}
+                note={`원리금균등 상환 기준으로, 이자 비중은 약 ${I.ratio.toFixed(1)}%예요.`}
               />
             )}
 
@@ -336,7 +336,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                     { k: "연 총 상환액", value: won(D.totalAnnual / 10000), unit: "만원", color: C_DARK },
                     { k: "규제 기준", value: "40", unit: "%", color: C_DARK },
                   ]}
-                  note="DSR은 연 소득 대비 모든 대출의 연간 원리금 비율입니다."
+                  note="DSR은 연 소득 대비 모든 대출의 연간 원리금 비율이에요."
                 />
                 <div className={styles.card}>
                   <div className={styles.subTitle}>DSR 막대 (규제선 40%)</div>
@@ -354,8 +354,8 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                     </svg>
                     <span>
                       {D.ok
-                        ? `DSR ${D.value.toFixed(1)}% — 통상 규제 기준(40%) 이내입니다.`
-                        : `DSR ${D.value.toFixed(1)}% — 규제 기준(40%)을 넘어, 한도가 제한될 수 있습니다.`}
+                        ? `DSR ${D.value.toFixed(1)}% — 통상 규제 기준(40%) 이내예요.`
+                        : `DSR ${D.value.toFixed(1)}% — 규제 기준(40%)을 넘어, 한도가 제한될 수 있어요.`}
                     </span>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                   { k: "잔존 기간", value: String(Pp.remain), unit: "개월", color: C_DARK },
                   { k: "실효 부담률", value: Pp.eff.toFixed(2), unit: "%", color: C_CORAL },
                 ]}
-                note="수수료 = 원금 × 수수료율 × (잔존기간 ÷ 약정기간). 다수 상품은 3년 경과 시 면제됩니다."
+                note="수수료 = 원금 × 수수료율 × (잔존기간 ÷ 약정기간). 다수 상품은 3년 경과 시 면제돼요."
               />
             )}
 
@@ -378,7 +378,7 @@ export default function Calculator({ initialTab }: { initialTab: string }) {
                 <circle cx="12" cy="12" r="9" />
                 <path d="M12 8h.01M11 12h1v4h1" />
               </svg>
-              <span>본 계산기는 단순 추정치로, 실제 금융회사의 상환표·우대금리·수수료와 다를 수 있습니다. 참고용으로만 활용하세요.</span>
+              <span>본 계산기는 단순 추정치로, 실제 금융회사의 상환표·우대금리·수수료와 다를 수 있어요. 참고용으로만 활용하세요.</span>
             </p>
           </div>
         </div>

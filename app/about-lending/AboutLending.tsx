@@ -19,10 +19,10 @@ const QUIZ = [
 ];
 
 const MYTHS = [
-  { q: "대부업체는 모두 불법이다?", a: "금융당국에 등록된 대부업체는 관련 법령에 따라 합법적으로 영업할 수 있습니다. 미등록 업체만 불법 사금융입니다." },
-  { q: "대부업을 이용하면 신용점수가 무조건 폭락한다?", a: "신용점수는 상환 이력·부채 수준 등 다양한 요소로 평가되며, 단순한 이용 여부만으로 결정되지 않습니다." },
-  { q: "대부중개업 등록번호는 큰 의미가 없다?", a: "등록 여부는 합법 업체와 불법 사금융을 구분하는 가장 기본적인 기준입니다. 상담 전 대부중개업 등록번호를 꼭 확인하세요." },
-  { q: "수수료를 내야 대출이 가능하다?", a: "정상적인 금융회사는 대출 실행 전에 수수료를 요구하지 않습니다. 선입금·수수료 요구는 대표적인 사기 신호입니다." },
+  { q: "대부업체는 모두 불법이다?", a: "금융당국에 등록된 대부업체는 관련 법령에 따라 합법적으로 영업할 수 있어요. 미등록 업체만 불법 사금융이에요." },
+  { q: "대부업을 이용하면 신용점수가 무조건 폭락한다?", a: "신용점수는 상환 이력·부채 수준 등 다양한 요소로 평가되며, 단순한 이용 여부만으로 결정되지 않아요." },
+  { q: "대부중개업 등록번호는 큰 의미가 없다?", a: "등록 여부는 합법 업체와 불법 사금융을 구분하는 가장 기본적인 기준이에요. 상담 전 대부중개업 등록번호를 꼭 확인하세요." },
+  { q: "수수료를 내야 대출이 가능하다?", a: "정상적인 금융회사는 대출 실행 전에 수수료를 요구하지 않아요. 선입금·수수료 요구는 대표적인 사기 신호예요." },
 ];
 
 const COMPARE = [
@@ -35,11 +35,11 @@ const COMPARE = [
 ];
 
 const DANGERS = [
-  { t: "선입금 요구", d: "정상적인 금융회사는 대출 실행 전에 수수료·보증금을 요구하지 않습니다." },
-  { t: "중개수수료 요구", d: "대출 중개 명목으로 차주에게 수수료를 받는 것은 법으로 금지되어 있습니다." },
-  { t: "작업대출 권유", d: "재직·소득 서류를 허위로 꾸미는 작업대출은 명백한 불법이며 본인도 처벌받을 수 있습니다." },
-  { t: "통장 양도 요구", d: "통장·카드를 넘기는 행위는 범죄에 악용될 수 있고 양도자도 책임을 질 수 있습니다." },
-  { t: "신분증 사진 무분별 요구", d: "꼭 필요한 절차가 아닌데 신분증 사진을 과도하게 요구하면 도용 위험이 있습니다." },
+  { t: "선입금 요구", d: "정상적인 금융회사는 대출 실행 전에 수수료·보증금을 요구하지 않아요." },
+  { t: "중개수수료 요구", d: "대출 중개 명목으로 차주에게 수수료를 받는 것은 법으로 금지되어 있어요." },
+  { t: "작업대출 권유", d: "재직·소득 서류를 허위로 꾸미는 작업대출은 명백한 불법이며 본인도 처벌받을 수 있어요." },
+  { t: "통장 양도 요구", d: "통장·카드를 넘기는 행위는 범죄에 악용될 수 있고 양도자도 책임을 질 수 있어요." },
+  { t: "신분증 사진 무분별 요구", d: "꼭 필요한 절차가 아닌데 신분증 사진을 과도하게 요구하면 도용 위험이 있어요." },
 ];
 
 const CHECKS = [
@@ -52,11 +52,11 @@ const CHECKS = [
 ];
 
 const FAQS = [
-  { q: "대부업체는 모두 불법인가요?", a: "아닙니다. 금융감독원·지자체에 등록된 대부업체는 관련 법령에 따라 합법적으로 영업할 수 있습니다. 미등록 업체가 불법 사금융이며, 등록 여부로 둘을 구분할 수 있습니다." },
-  { q: "대부업을 이용하면 신용점수가 떨어지나요?", a: "신용점수는 상환 이력·부채 수준 등 여러 요소로 평가되며, 단순히 대부업 이용 여부만으로 결정되지 않습니다. 다만 대출 실행과 상환 상태는 신용 정보에 반영됩니다." },
-  { q: "등록 대부업체는 어디서 확인하나요?", a: "금융감독원의 '등록 대부업체 통합조회'에서 업체명·등록번호로 직접 확인할 수 있습니다. 상담 전에 등록 여부를 조회하는 것이 가장 기본적인 안전 확인입니다." },
-  { q: "중개수수료 요구는 합법인가요?", a: "아닙니다. 대출 중개 명목으로 차주에게 수수료를 요구하는 것은 법으로 금지되어 있습니다. 수수료를 요구한다면 응하지 말고 거래를 즉시 중단하세요." },
-  { q: "선입금을 요구하면 정상 업체인가요?", a: "아닙니다. 정상적인 금융회사는 대출 실행 전에 어떠한 명목으로도 선입금을 요구하지 않습니다. 선입금 요구는 금융사기의 가장 대표적인 신호이므로 즉시 거래를 중단하고 금융감독원(1332)에 신고하세요." },
+  { q: "대부업체는 모두 불법인가요?", a: "아니에요. 금융감독원·지자체에 등록된 대부업체는 관련 법령에 따라 합법적으로 영업할 수 있어요. 미등록 업체가 불법 사금융이며, 등록 여부로 둘을 구분할 수 있어요." },
+  { q: "대부업을 이용하면 신용점수가 떨어지나요?", a: "신용점수는 상환 이력·부채 수준 등 여러 요소로 평가되며, 단순히 대부업 이용 여부만으로 결정되지 않아요. 다만 대출 실행과 상환 상태는 신용 정보에 반영돼요." },
+  { q: "등록 대부업체는 어디서 확인하나요?", a: "금융감독원의 '등록 대부업체 통합조회'에서 업체명·등록번호로 직접 확인할 수 있어요. 상담 전에 등록 여부를 조회하는 것이 가장 기본적인 안전 확인이에요." },
+  { q: "중개수수료 요구는 합법인가요?", a: "아니에요. 대출 중개 명목으로 차주에게 수수료를 요구하는 것은 법으로 금지되어 있어요. 수수료를 요구한다면 응하지 말고 거래를 즉시 중단하세요." },
+  { q: "선입금을 요구하면 정상 업체인가요?", a: "아니에요. 정상적인 금융회사는 대출 실행 전에 어떠한 명목으로도 선입금을 요구하지 않아요. 선입금 요구는 금융사기의 가장 대표적인 신호이므로 즉시 거래를 중단하고 금융감독원(1332)에 신고하세요." },
 ];
 
 export default function AboutLending() {
@@ -121,7 +121,7 @@ export default function AboutLending() {
                 <br />
                 합법 대부업과 불법 사금융을 구분할 수 있도록
                 <br />
-                핵심 정보를 한곳에 모았습니다.
+                핵심 정보를 한곳에 모았어요.
               </p>
               <div className={styles.quizList}>
                 {QUIZ.map((q) => (
@@ -162,7 +162,7 @@ export default function AboutLending() {
           <div className={styles.secHead}>
             <div className={styles.secLabel}>SECTION 01</div>
             <h2 className={styles.secTitle}>대부업에 대한 흔한 오해</h2>
-            <p className={styles.secDesc}>많은 분들이 대부업에 대해 막연한 선입견을 갖고 있습니다. 자주 접하는 오해부터 사실 그대로 짚어 봅니다.</p>
+            <p className={styles.secDesc}>많은 분들이 대부업에 대해 막연한 선입견을 갖고 있어요.<br />자주 접하는 오해부터 사실 그대로 짚어 봐요.</p>
           </div>
           <div className={styles.grid2}>
             {MYTHS.map((m) => (
@@ -171,7 +171,7 @@ export default function AboutLending() {
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                   </svg>
-                  오해입니다
+                  오해예요
                 </span>
                 <div className={styles.mythQ}>{m.q}</div>
                 <div className={styles.mythA}>{m.a}</div>
@@ -187,14 +187,14 @@ export default function AboutLending() {
           <div className={styles.secHead}>
             <div className={styles.secLabel}>SECTION 02</div>
             <h2 className={styles.secTitle}>합법 대부업과 불법 사금융의 차이</h2>
-            <p className={styles.secDesc}>가장 중요한 건 &lsquo;등록 여부&rsquo;입니다. 합법 대부업과 불법 사금융은 아래 항목에서 분명하게 갈립니다.</p>
+            <p className={styles.secDesc}>가장 중요한 건 &lsquo;등록 여부&rsquo;예요. 합법 대부업과 불법 사금융은 아래 항목에서 분명하게 갈려요.</p>
           </div>
           <div className={styles.callout}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3182F6" strokeWidth="2" strokeLinecap="round">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 8v4M12 16h.01" />
             </svg>
-            <p>등록 대부업체는 금융감독원·지자체에 등록되어 있으며, 등록 여부는 누구나 직접 조회해 확인할 수 있습니다.</p>
+            <p>등록 대부업체는 금융감독원·지자체에 등록되어 있으며, 등록 여부는 누구나 직접 조회해 확인할 수 있어요.</p>
           </div>
           <div className={styles.tableWrap}>
             <table className={styles.table}>
@@ -234,8 +234,8 @@ export default function AboutLending() {
         <div className={styles.wrap}>
           <div className={styles.secHead}>
             <div className={`${styles.secLabel} ${styles.secLabelRed}`}>SECTION 03</div>
-            <h2 className={styles.secTitle}>이런 경우는 위험 신호입니다</h2>
-            <p className={styles.secDesc}>아래와 같은 요구를 받는다면 불법 사금융이나 금융사기일 수 있습니다. 진행을 멈추고 등록 여부부터 확인하세요.</p>
+            <h2 className={styles.secTitle}>이런 경우는 위험 신호예요</h2>
+            <p className={styles.secDesc}>아래와 같은 요구를 받는다면 불법 사금융이나 금융사기일 수 있어요.<br />진행을 멈추고 등록 여부부터 확인하세요.</p>
           </div>
           <div className={styles.dangerList}>
             {DANGERS.map((d, i) => (
@@ -264,7 +264,7 @@ export default function AboutLending() {
           <div className={styles.secHead}>
             <div className={styles.secLabel}>SECTION 04</div>
             <h2 className={styles.secTitle}>대부업 이용 전 체크리스트</h2>
-            <p className={styles.secDesc}>상담을 시작하기 전, 아래 항목을 하나씩 확인하세요. 직접 체크해 보며 빠진 부분이 없는지 점검할 수 있습니다.</p>
+            <p className={styles.secDesc}>상담을 시작하기 전, 아래 항목을 하나씩 확인하세요.<br />직접 체크해 보며 빠진 부분이 없는지 점검할 수 있어요.</p>
           </div>
           <div className={styles.checkWrap}>
             <div className={styles.checkList}>
@@ -300,7 +300,7 @@ export default function AboutLending() {
           <div className={styles.secHead}>
             <div className={styles.secLabel}>SECTION 05</div>
             <h2 className={styles.secTitle}>자주 묻는 질문</h2>
-            <p className={styles.secDesc}>대부업에 대해 가장 많이 묻는 질문을 모았습니다. 답변은 이 페이지에서 바로 확인할 수 있습니다.</p>
+            <p className={styles.secDesc}>대부업에 대해 가장 많이 묻는 질문을 모았어요. 답변은 이 페이지에서 바로 확인할 수 있어요.</p>
           </div>
           <div className={styles.faqList}>
             {FAQS.map((f, i) => {
@@ -338,7 +338,7 @@ export default function AboutLending() {
           <p className={styles.ctaDesc}>
             신용관리, 대출상식, 금융사기예방 등 금융소비자가
             <br />
-            꼭 알아야 할 정보를 금융가이드 메뉴에서 확인할 수 있습니다.
+            꼭 알아야 할 정보를 금융가이드 메뉴에서 확인할 수 있어요.
           </p>
           <Link href="/guides" className={styles.ctaBtn}>
             금융가이드 바로가기
@@ -349,7 +349,7 @@ export default function AboutLending() {
 
       {/* ===== DISCLAIMER ===== */}
       <div className={styles.disclaimer}>
-        <p className={styles.wrap}>본 콘텐츠는 금융 이해를 돕기 위한 교육 정보이며, 특정 금융상품의 가입을 권유하거나 투자를 자문하지 않습니다. 실제 거래 전 반드시 해당 금융회사의 안내를 확인하세요.</p>
+        <p className={styles.wrap}>본 콘텐츠는 금융 이해를 돕기 위한 교육 정보이며, 특정 금융상품의 가입을 권유하거나 투자를 자문하지 않아요. 실제 거래 전 반드시 해당 금융회사의 안내를 확인하세요.</p>
       </div>
     </>
   );

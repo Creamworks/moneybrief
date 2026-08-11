@@ -25,9 +25,11 @@ export default function Error({
         <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
         <path d="M12 9v4M12 17h.01" />
       </svg>
-      <h1 className={styles.title}>일시적인 오류가 발생했습니다</h1>
+      <h1 className={styles.title}>이용에 불편을 드려 죄송합니다.</h1>
       <p className={styles.desc}>
-        잠시 후 다시 시도해 주세요. 문제가 계속되면 홈으로 이동해 주세요.
+        사용자가 많거나 일시적인 시스템 오류로 인해 페이지를 불러 올 수가 없어요.
+        <br />
+        잠시 후 다시 접속하여 주세요.
       </p>
       <div className={styles.actions}>
         <button className={styles.btnPrimary} onClick={() => reset()}>

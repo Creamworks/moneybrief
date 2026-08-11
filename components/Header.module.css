@@ -383,6 +383,14 @@
   flex: none;
 }
 
+
+/* 태블릿: 긴 제작 안내 문구가 메뉴를 압박하므로 먼저 숨김 */
+@media (max-width: 1100px) {
+  .gnbCredit {
+    display: none;
+  }
+}
+
 /* ============ responsive switch at 768px ============ */
 @media (max-width: 768px) {
   .menu,

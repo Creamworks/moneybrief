@@ -694,6 +694,22 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .guideGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .heroCards {
+    gap: 12px;
+  }
+  .h1 {
+    font-size: 38px;
+  }
+  .h1Logo {
+    height: 52px;
+  }
+}
+
 @media (max-width: 600px) {
   .block {
     padding: 44px 0;

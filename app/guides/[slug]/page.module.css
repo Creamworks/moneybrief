@@ -1,4 +1,4 @@
-/* ============ /guides/[slug] (가이드 상세) — ported from design-reference/CreditNote 가이드 상세.html ============ */
+/* ============ /guides/[slug] (가이드 상세) — money brief ============ */
 .wrap {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -531,8 +531,9 @@
   .rail {
     display: none;
   }
+  /* 태블릿에서는 관련글을 2열로 (1열은 너무 성김) */
   .relGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   .artHead h1 {
     font-size: 36px;
@@ -572,6 +573,9 @@
   }
   .related h3 {
     font-size: 22px;
+  }
+  .relGrid {
+    grid-template-columns: 1fr;
   }
 }
 
