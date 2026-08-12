@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import styles from "./page.module.css";
+import { SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import {
+  ORG_ID,
+  baseNodes,
+  reviewerNode,
+  breadcrumbNode,
+  webPageNode,
+  type Crumb,
+} from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "운영 원칙 — money brief",
@@ -50,8 +60,31 @@ const COMPANY_ROWS = [
 ];
 
 export default function AboutPage() {
+  const pageUrl = `${SITE_URL}/about`;
+  const crumbs: Crumb[] = [
+    { name: "홈", path: "/" },
+    { name: "운영 원칙", path: "/about" },
+  ];
+  const jsonLd = [
+    ...baseNodes(),
+    reviewerNode(),
+    breadcrumbNode(pageUrl, crumbs),
+    {
+      ...webPageNode({
+        url: pageUrl,
+        type: "AboutPage",
+        name: "운영 원칙",
+        description:
+          "money brief의 콘텐츠 제작 원칙과 금융소비자 보호정책, 운영사 정보를 안내해요.",
+        crumbs,
+      }),
+      // 이 페이지가 설명하는 대상이 곧 운영사 엔티티임을 명시
+      mainEntity: { "@id": ORG_ID },
+    },
+  ];
   return (
     <>
+      <JsonLd nodes={jsonLd} />
       {/* ===== HERO ===== */}
       <div className={styles.hero}>
         <div className={styles.wrap}>

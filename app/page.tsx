@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/lib/wp";
+import { SITE_URL, guideUrl } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { baseNodes, webPageNode, itemListNode } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "money brief — 금융교육 콘텐츠 허브",
@@ -227,8 +230,24 @@ export default async function Home() {
   const list = picks.slice(1, 5);
   const heroCount = (name: string, fb: number) => counts[name] ?? fb;
 
+  const homeUrl = `${SITE_URL}/`;
+  const jsonLd = [
+    ...baseNodes(),
+    webPageNode({
+      url: homeUrl,
+      name: "money brief — 금융교육 콘텐츠 허브",
+      description:
+        "money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠예요. 대부업·신용·정부지원을 쉬운 말로, 정확하게 알려드려요.",
+    }),
+    itemListNode(
+      homeUrl,
+      picks.slice(0, 5).map((c) => ({ name: c.title, url: guideUrl(c.slug) })),
+    ),
+  ];
+
   return (
     <>
+      <JsonLd nodes={jsonLd} />
       {/* ===== HERO ===== */}
       <section className={styles.hero}>
         <div className={`${styles.wrap} ${styles.heroGrid}`}>

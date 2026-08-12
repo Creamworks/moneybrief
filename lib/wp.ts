@@ -43,6 +43,17 @@ export async function getMediaMap(ids: number[]): Promise<Record<number, string>
   return map;
 }
 
+/** 태그 ID -> 이름. Article 스키마의 keywords 로 씁니다. */
+export async function getTagNames(ids: number[]): Promise<string[]> {
+  const uniq = [...new Set((ids || []).filter((n) => n && n > 0))];
+  if (!uniq.length) return [];
+  const tags =
+    (await wpFetch<{ id: number; name: string }[]>(
+      `/wp/v2/tags?include=${uniq.join(",")}&per_page=100&_fields=id,name`,
+    )) || [];
+  return tags.map((t) => decodeEntities(t.name)).filter(Boolean);
+}
+
 export const GUIDE_CATEGORIES = [
   "신용관리",
   "대출상식",

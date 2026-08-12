@@ -7,6 +7,21 @@ import ArticleRail from "./ArticleRail";
 import Feedback from "./Feedback";
 import HelpfulCount from "./HelpfulCount";
 import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/lib/wp";
+import { getTagNames } from "@/lib/wp";
+import { guideUrl } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import {
+  abs,
+  baseNodes,
+  reviewerNode,
+  breadcrumbNode,
+  webPageNode,
+  articleNode,
+  extractFaqFromHtml,
+  extractCitations,
+  countWords,
+  type Crumb,
+} from "@/lib/schema";
 
 type WpPost = {
   id: number;
@@ -18,13 +33,14 @@ type WpPost = {
   modified: string;
   categories: number[];
   featured_media?: number;
+  tags?: number[];
   acf?: { subtitle?: string; read_time?: number | string; sources?: string; helpful_count?: number };
 };
 type WpCat = { id: number; name: string };
 
 async function getPost(slug: string): Promise<WpPost | null> {
   const arr = await wpFetch<WpPost[]>(
-    `/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,content,excerpt,date,modified,categories,featured_media,acf`,
+    `/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,content,excerpt,date,modified,categories,featured_media,tags,acf`,
   );
   return arr && arr[0] ? arr[0] : null;
 }
@@ -121,8 +137,54 @@ export default async function GuideDetail({
   const media = await getMediaMap([post.featured_media || 0, ...rel.map((r) => r.featured_media || 0)]);
   const heroImage = (post.featured_media && media[post.featured_media]) || catImage(catLabel);
 
+  /* ---------- 구조화 데이터(JSON-LD) ---------- */
+  const cleanSlug = decodeURIComponent(post.slug);
+  const pageUrl = guideUrl(cleanSlug);
+  const rawBody = post.content?.rendered || "";
+  const faq = extractFaqFromHtml(rawBody);
+  const keywords = await getTagNames(post.tags || []);
+  const crumbs: Crumb[] = [
+    { name: "홈", path: "/" },
+    { name: "금융가이드", path: "/guides" },
+    ...(catLabel
+      ? [{ name: catLabel, path: `/guides?cat=${encodeURIComponent(catLabel)}` }]
+      : []),
+    { name: title, path: `/guides/${encodeURIComponent(cleanSlug)}` },
+  ];
+  const jsonLd = [
+    ...baseNodes(),
+    reviewerNode(),
+    breadcrumbNode(pageUrl, crumbs),
+    webPageNode({
+      url: pageUrl,
+      name: title,
+      description: summary,
+      crumbs,
+      datePublished: post.date,
+      dateModified: post.modified,
+      primaryImage: abs(heroImage),
+      faq,
+      reviewed: true,
+    }),
+    articleNode({
+      url: pageUrl,
+      headline: title,
+      alternativeHeadline: post.acf?.subtitle,
+      description: summary,
+      image: abs(heroImage),
+      datePublished: post.date,
+      dateModified: post.modified,
+      section: catLabel,
+      keywords,
+      wordCount: countWords(rawBody),
+      readMinutes: readTime,
+      citations: extractCitations(post.acf?.sources),
+    }),
+  ];
+
   return (
     <>
+      <JsonLd nodes={jsonLd} />
       <ReadingProgress />
 
       <div className={styles.artHead}>

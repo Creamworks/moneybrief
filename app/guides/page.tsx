@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 import GuideList, { type Guide } from "./GuideList";
 import { wpFetch, stripHtml, getMediaMap, GUIDE_CATEGORIES } from "@/lib/wp";
+import { SITE_URL, guideUrl } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { baseNodes, breadcrumbNode, webPageNode, itemListNode, type Crumb } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "주제별 금융 가이드 — money brief",
@@ -68,8 +71,31 @@ export default async function GuidesPage({
     ? null
     : (pickId && guides.find((g) => g.id === pickId)) || latest;
 
+  const pageUrl = `${SITE_URL}/guides`;
+  const crumbs: Crumb[] = [
+    { name: "홈", path: "/" },
+    { name: "금융가이드", path: "/guides" },
+  ];
+  const jsonLd = [
+    ...baseNodes(),
+    breadcrumbNode(pageUrl, crumbs),
+    webPageNode({
+      url: pageUrl,
+      type: "CollectionPage",
+      name: "주제별 금융 가이드",
+      description:
+        "신용부터 사기 예방까지, 검증된 정보형 콘텐츠를 한곳에 모았어요. 주제별로 골라 보세요.",
+      crumbs,
+    }),
+    itemListNode(
+      pageUrl,
+      guides.slice(0, 60).map((g) => ({ name: g.title, url: guideUrl(g.slug) })),
+    ),
+  ];
+
   return (
     <div className={styles.page}>
+      <JsonLd nodes={jsonLd} />
       <GuideList posts={guides} featured={featured} initialCat={sp?.cat} />
     </div>
   );
