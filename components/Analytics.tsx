@@ -9,6 +9,8 @@
  *  3) time_on_page    : 활성 체류 10 / 30 / 60 / 120 / 180 / 300초 도달 시 1회씩
  *  4) page_engagement : 이탈·탭 전환·라우팅 시 "직전 전송 이후 늘어난 초"를 델타로 전송
  *                       → GA4에서 engagement_seconds 를 합계(SUM)하면 총 체류시간이 돼요.
+ *  5) ai_referral     : ChatGPT·Perplexity 등 생성형 AI 답변을 거쳐 들어온 방문 (세션 최초 1회)
+ *                       → GEO(생성형 검색 최적화) 성과를 직접 확인하는 지표예요.
  *
  * 체류시간은 탭이 보이는 동안만 누적해요(백그라운드 시간 제외).
  */
@@ -33,6 +35,45 @@ function push(payload: DL) {
 const SCROLL_MARKS = [25, 50, 75, 90, 100];
 const TIME_MARKS = [10, 30, 60, 120, 180, 300];
 
+/**
+ * 생성형 AI 유입 판별표.
+ * GA4 기본 채널 그룹에서는 이 트래픽이 대부분 Referral 로만 잡혀 따로 세기 어려워요.
+ * 도메인이 바뀌거나 새 서비스가 생기면 여기만 고치면 돼요.
+ */
+const AI_REFERRERS: [RegExp, string][] = [
+  [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$/, "ChatGPT"],
+  [/(^|\.)perplexity\.ai$/, "Perplexity"],
+  [/(^|\.)claude\.ai$/, "Claude"],
+  [/(^|\.)gemini\.google\.com$|(^|\.)bard\.google\.com$/, "Gemini"],
+  [/(^|\.)copilot\.microsoft\.com$/, "Microsoft Copilot"],
+  [/(^|\.)grok\.com$|(^|\.)x\.ai$/, "Grok"],
+  [/(^|\.)you\.com$/, "You.com"],
+  [/(^|\.)poe\.com$/, "Poe"],
+  [/(^|\.)wrtn\.ai$/, "뤼튼"],
+  [/(^|\.)liner\.com$/, "Liner"],
+  [/(^|\.)genspark\.ai$/, "Genspark"],
+  [/(^|\.)felo\.ai$/, "Felo"],
+];
+
+function detectAiSource(): string | null {
+  // 1) ChatGPT 등은 링크에 utm_source 를 붙여 보내요.
+  const utm = new URLSearchParams(window.location.search).get("utm_source") || "";
+  for (const [re, name] of AI_REFERRERS) {
+    if (re.test(utm.toLowerCase().replace(/^https?:\/\//, ""))) return name;
+  }
+  // 2) 그 외에는 referrer 호스트로 판별
+  if (!document.referrer) return null;
+  let host = "";
+  try {
+    host = new URL(document.referrer).hostname.toLowerCase();
+  } catch {
+    return null;
+  }
+  if (host === window.location.hostname) return null;
+  for (const [re, name] of AI_REFERRERS) if (re.test(host)) return name;
+  return null;
+}
+
 function Tracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -46,6 +87,16 @@ function Tracker() {
     if (isFirst.current) {
       // 최초 진입은 GTM 컨테이너 로드 시 GA4 구성 태그가 page_view를 이미 보내요.
       isFirst.current = false;
+      // 생성형 AI 유입은 세션 최초 1회만 기록 (SPA 라우팅 중에는 referrer가 그대로라 중복돼요)
+      const aiSource = detectAiSource();
+      if (aiSource) {
+        push({
+          event: "ai_referral",
+          ai_source: aiSource,
+          page_path: pagePath,
+          page_referrer: document.referrer,
+        });
+      }
     } else {
       pvTimer = window.setTimeout(() => {
         push({
