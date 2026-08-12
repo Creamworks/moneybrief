@@ -1,0 +1,6 @@
+# bcredit.host.whoisweb.net — 워드프레스 CMS(headless 백엔드) 전용 서버
+# 이 도메인은 콘텐츠 원본 저장소일 뿐이며, 공개 사이트는 https://moneybrief.net 입니다.
+# 중복 콘텐츠 색인을 막기 위해 전체 크롤링을 차단합니다.
+
+User-agent: *
+Disallow: /
