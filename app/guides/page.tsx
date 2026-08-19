@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import GuideList, { type Guide } from "./GuideList";
 import { wpFetch, stripHtml, getMediaMap, GUIDE_CATEGORIES } from "@/lib/wp";
 import { SITE_URL, guideUrl } from "@/lib/site";
+import { mainTitle } from "@/lib/title";
 import JsonLd from "@/components/JsonLd";
 import { baseNodes, breadcrumbNode, webPageNode, itemListNode, type Crumb } from "@/lib/schema";
 
@@ -41,7 +42,7 @@ async function getGuides(): Promise<Guide[]> {
   return posts.map((p) => ({
     id: p.id,
     slug: decodeURIComponent(p.slug),
-    title: stripHtml(p.title?.rendered || ""),
+    title: mainTitle(stripHtml(p.title?.rendered || "")),
     excerpt: stripHtml(p.excerpt?.rendered || ""),
     cat: catName[p.categories?.[0]] || "",
     read_time: Number(p.acf?.read_time) || 0,

@@ -16,49 +16,85 @@ export type Node = Record<string, unknown>;
 export const abs = (u: string) => (u && u.startsWith("http") ? u : `${SITE_URL}${u || ""}`);
 
 export const ORG_ID = `${SITE_URL}/#organization`;
+export const PARENT_ORG_ID = `${SITE_URL}/#parent-organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const EDITORIAL_ID = `${SITE_URL}/#editorial-team`;
 export const REVIEWER_ID = `${SITE_URL}/#reviewer`;
 export const LOGO_ID = `${SITE_URL}/#logo`;
 
 /* ------------------------------------------------------------------ *
- * sameAs — "이 회사가 곧 저 계정"임을 검색엔진·AI에 알리는 동일성 선언
+ * sameAs — "이 채널들의 주인이 같은 실체"임을 선언
  *
- * ⚠️ 넣기 전 반드시 확인하세요.
- *   - 회사가 직접 운영하는 공식 채널인가?
- *   - 그 페이지에 상호(㈜바로크레디트대부)가 명시돼 있는가?
- *   - 링크가 살아 있는가? (404·비공개 계정은 오히려 신뢰도를 떨어뜨려요)
- * 확인되지 않은 URL은 넣지 말고 비워 두는 편이 안전해요.
+ * 브랜드(money brief)와 운영사(㈜바로크레디트대부)는 다른 엔티티라서 따로 관리해요.
+ * money brief 이름으로 운영하는 채널은 SAME_AS 에,
+ * 회사(바로크레디트/바로바로론) 이름의 채널은 PARENT_SAME_AS 에 넣으세요.
+ *
+ * ⚠️ 넣기 전 확인: 직접 운영하는 공식 채널인가 / 그 페이지에 이름이 명시돼 있는가 / 지금 접속되는가.
+ * 확인 안 된 URL은 넣지 말고 비워 두는 편이 안전해요.
  * ------------------------------------------------------------------ */
 export const SAME_AS: string[] = [
+  // money brief 브랜드 계정 (예: 네이버 블로그, 유튜브)
+];
+
+export const PARENT_SAME_AS: string[] = [
   "https://www.barocredit.com",
-  // 아래는 고객 확인 후 주석을 풀고 실제 URL로 교체하세요.
-  // "https://blog.naver.com/____",              // 네이버 블로그
-  // "https://www.youtube.com/@____",            // 유튜브 채널
-  // "https://www.instagram.com/____",           // 인스타그램
-  // "https://www.facebook.com/____",            // 페이스북 페이지
-  // "https://www.linkedin.com/company/____",    // 링크드인 회사 페이지
-  // "https://map.naver.com/p/entry/place/____", // 네이버 플레이스(지도)
-  // "https://ko.wikipedia.org/wiki/____",       // 위키백과 문서(있을 경우)
+  // "https://blog.naver.com/____",
+  // "https://www.youtube.com/@____",
+  // "https://www.instagram.com/____",
+  // "https://map.naver.com/p/entry/place/____",
 ];
 
 /* ------------------------------------------------------------------ *
  * 운영사 — ㈜바로크레디트대부
  * 값의 출처: components/Footer.tsx, app/about/page.tsx (화면 표기와 동일)
  * ------------------------------------------------------------------ */
+/**
+ * 사이트를 발행하는 주체 = 브랜드 money brief.
+ * 실제 법인은 parentOrganization 으로 연결해요. (GEO 레퍼런스 구조 반영)
+ */
 export function organizationNode(): Node {
   return {
-    "@type": ["Organization", "FinancialService"],
+    "@type": "Organization",
     "@id": ORG_ID,
-    name: "㈜바로크레디트대부",
-    alternateName: ["바로크레디트대부", "바로크레디트", "Baro Credit"],
-    legalName: "주식회사 바로크레디트대부",
-    url: SITE_URL,
+    name: SITE_NAME,
+    alternateName: "머니브리프",
+    url: `${SITE_URL}/`,
+    description:
+      "㈜바로크레디트대부가 운영하는 금융교육 콘텐츠 플랫폼. 신용관리·대출상식·금융생활·금융사기예방 정보를 쉽게 제공합니다.",
     logo: { "@id": LOGO_ID },
     image: { "@id": LOGO_ID },
+    knowsAbout: [
+      "신용관리",
+      "개인신용평점",
+      "대출",
+      "대부업",
+      "불법 사금융",
+      "금융사기 예방",
+      "보이스피싱",
+      "DSR",
+      "서민금융 지원제도",
+      "채무조정",
+    ],
+    publishingPrinciples: `${SITE_URL}/about`,
+    ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
+    parentOrganization: { "@id": PARENT_ORG_ID },
+  };
+}
+
+/**
+ * 운영 법인 — ㈜바로크레디트대부.
+ * 값의 출처: components/Footer.tsx, app/about/page.tsx (화면 표기와 반드시 동일해야 해요)
+ */
+export function parentOrganizationNode(): Node {
+  return {
+    "@type": ["Organization", "FinancialService"],
+    "@id": PARENT_ORG_ID,
+    name: "㈜바로크레디트대부",
+    alternateName: ["바로크레디트대부", "바로바로론", "Baro Credit"],
+    legalName: "주식회사 바로크레디트대부",
+    url: "https://www.barocredit.com/",
     description:
-      "㈜바로크레디트대부는 금융감독원에 등록된 대부업·대부중개업체이며, 금융교육 콘텐츠 브랜드 money brief를 운영해요.",
-    slogan: "복잡한 금융을 쉽게 이해할 수 있게",
+      "금융감독원에 등록된 대부업·대부중개업체이며, 금융교육 콘텐츠 브랜드 money brief를 운영합니다.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "영등포로 150 (당산동1가, 생각공장)",
@@ -105,21 +141,7 @@ export function organizationNode(): Node {
       },
     },
     areaServed: { "@type": "Country", name: "대한민국" },
-    knowsAbout: [
-      "신용관리",
-      "개인신용평점",
-      "대출",
-      "대부업",
-      "불법 사금융",
-      "금융사기 예방",
-      "보이스피싱",
-      "DSR",
-      "서민금융 지원제도",
-      "채무조정",
-    ],
-    publishingPrinciples: `${SITE_URL}/about`,
-    ownershipFundingInfo: `${SITE_URL}/about`,
-    sameAs: SAME_AS,
+    sameAs: PARENT_SAME_AS,
   };
 }
 
@@ -132,8 +154,8 @@ export function logoNode(): Node {
   return {
     "@type": "ImageObject",
     "@id": LOGO_ID,
-    url: `${SITE_URL}/img/money-brief-logo.png`,
-    contentUrl: `${SITE_URL}/img/money-brief-logo.png`,
+    url: `${SITE_URL}/logo.png`,
+    contentUrl: `${SITE_URL}/logo.png`,
     width: 704,
     height: 128,
     caption: SITE_NAME,
@@ -146,7 +168,7 @@ export function editorialNode(): Node {
     "@type": "Organization",
     "@id": EDITORIAL_ID,
     name: "money brief 편집팀",
-    url: `${SITE_URL}/about`,
+    url: `${SITE_URL}/`,
     description:
       "법령·금융감독원 공식 자료·공인 통계를 근거로 금융교육 콘텐츠를 제작하고 검증하는 팀이에요.",
     parentOrganization: { "@id": ORG_ID },
@@ -169,11 +191,11 @@ export function websiteNode(): Node {
   return {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     name: SITE_NAME,
-    alternateName: ["머니브리프", "money brief 금융가이드"],
+    alternateName: "머니브리프",
     description:
-      "신용·대출·금융사기를 쉬운 말로 정확하게 검증해 전하는 금융교육 콘텐츠 허브예요.",
+      "신용관리, 대출상식, 금융생활, 금융사기예방을 쉽게 풀어주는 금융교육 콘텐츠와 금융계산기를 제공합니다.",
     publisher: { "@id": ORG_ID },
     inLanguage: "ko-KR",
   };
@@ -182,6 +204,7 @@ export function websiteNode(): Node {
 /** 모든 페이지가 공통으로 싣는 앵커 노드 */
 export const baseNodes = (): Node[] => [
   organizationNode(),
+  parentOrganizationNode(),
   logoNode(),
   websiteNode(),
   editorialNode(),
@@ -267,7 +290,8 @@ export function articleNode(opts: {
   citations?: { name: string; url?: string }[];
 }): Node {
   const node: Node = {
-    "@type": "Article",
+    // 레퍼런스(moneybrief-geo)와 동일하게 BlogPosting 사용. Article 의 하위 타입이에요.
+    "@type": "BlogPosting",
     "@id": `${opts.url}#article`,
     isPartOf: { "@id": `${opts.url}#webpage` },
     mainEntityOfPage: { "@id": `${opts.url}#webpage` },

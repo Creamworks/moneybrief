@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.moneybrief.net/#organization",
+      "name": "money brief",
+      "alternateName": "머니브리프",
+      "url": "https://www.moneybrief.net/",
+      "description": "㈜바로크레디트대부가 운영하는 금융교육 콘텐츠 플랫폼. 신용관리·대출상식·금융생활·금융사기예방 정보를 쉽게 제공합니다.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.moneybrief.net/logo.png"
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "㈜바로크레디트대부",
+        "alternateName": "바로바로론",
+        "url": "https://www.barocredit.com/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.moneybrief.net/#website",
+      "url": "https://www.moneybrief.net/",
+      "name": "money brief",
+      "alternateName": "머니브리프",
+      "description": "신용관리, 대출상식, 금융생활, 금융사기예방을 쉽게 풀어주는 금융교육 콘텐츠와 금융계산기를 제공합니다.",
+      "inLanguage": "ko-KR",
+      "publisher": {
+        "@id": "https://www.moneybrief.net/#organization"
+      }
+    }
+  ]
+}

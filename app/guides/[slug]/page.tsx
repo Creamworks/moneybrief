@@ -9,6 +9,8 @@ import HelpfulCount from "./HelpfulCount";
 import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/lib/wp";
 import { getTagNames } from "@/lib/wp";
 import { guideUrl } from "@/lib/site";
+import { geoOverride } from "@/lib/geo-overrides";
+import { splitTitle } from "@/lib/title";
 import JsonLd from "@/components/JsonLd";
 import {
   abs,
@@ -74,8 +76,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return { title: "가이드 — money brief" };
-  const title = stripHtml(post.title.rendered);
+  const title = splitTitle(stripHtml(post.title.rendered)).title;
+  // 큐레이션 설명이 있으면 meta description 과 JSON-LD description 을 같은 문장으로 맞춰요.
+  const curated = geoOverride(post.id).description;
   const desc =
+    curated ||
     stripHtml(post.excerpt?.rendered || "").slice(0, 150) ||
     "money brief — 신용·대출·금융사기를 쉬운 말로, 정확하게 검증해 드립니다.";
   const media = await getMediaMap([post.featured_media || 0]);
@@ -124,7 +129,9 @@ export default async function GuideDetail({
   const catLabel = catName[post.categories?.[0]] || "";
   const readTime = Number(post.acf?.read_time) || 0;
   const { html, toc } = processBody(post.content?.rendered || "");
-  const title = stripHtml(post.title.rendered);
+  // 제목에 부제가 이어 붙어 저장된 글이 있어 첫 문장까지만 제목으로 씁니다.
+  const { title, subtitle: autoSubtitle } = splitTitle(stripHtml(post.title.rendered));
+  const pageSubtitle = post.acf?.subtitle || autoSubtitle;
   const summary = stripHtml(post.excerpt?.rendered || "");
   const helpfulCount = Number(post.acf?.helpful_count) || 0;
 
@@ -141,8 +148,12 @@ export default async function GuideDetail({
   const cleanSlug = decodeURIComponent(post.slug);
   const pageUrl = guideUrl(cleanSlug);
   const rawBody = post.content?.rendered || "";
-  const faq = extractFaqFromHtml(rawBody);
-  const keywords = await getTagNames(post.tags || []);
+  // 사람이 큐레이션한 설명·키워드·FAQ가 있으면 우선 사용하고, 없으면 자동 생성으로 대체
+  const geo = geoOverride(post.id);
+  const faq = geo.faq?.length ? geo.faq : extractFaqFromHtml(rawBody);
+  const tagNames = await getTagNames(post.tags || []);
+  const keywords = geo.keywords?.length ? geo.keywords : tagNames;
+  const schemaDesc = geo.description || summary;
   const crumbs: Crumb[] = [
     { name: "홈", path: "/" },
     { name: "금융가이드", path: "/guides" },
@@ -158,7 +169,7 @@ export default async function GuideDetail({
     webPageNode({
       url: pageUrl,
       name: title,
-      description: summary,
+      description: schemaDesc,
       crumbs,
       datePublished: post.date,
       dateModified: post.modified,
@@ -168,9 +179,10 @@ export default async function GuideDetail({
     }),
     articleNode({
       url: pageUrl,
+      // headline 은 반드시 화면 H1(워드프레스 제목)과 같아야 해요.
       headline: title,
-      alternativeHeadline: post.acf?.subtitle,
-      description: summary,
+      alternativeHeadline: pageSubtitle,
+      description: schemaDesc,
       image: abs(heroImage),
       datePublished: post.date,
       dateModified: post.modified,
@@ -198,9 +210,9 @@ export default async function GuideDetail({
           </nav>
           <div className={styles.headInner}>
             <span className={styles.catPill}>{catLabel}</span>
-            <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            {post.acf?.subtitle && (
-              <p className={styles.artSubtitle}>{post.acf.subtitle}</p>
+            <h1>{title}</h1>
+            {pageSubtitle && (
+              <p className={styles.artSubtitle}>{pageSubtitle}</p>
             )}
             {summary && <p className={styles.deck}>{summary}</p>}
             <div className={styles.byline}>
@@ -268,7 +280,7 @@ export default async function GuideDetail({
                     <img src={(r.featured_media && media[r.featured_media]) || catImage(catName[r.categories?.[0]] || "")} alt="" />
                   </div>
                   <div className={styles.rb}>
-                    <h4 dangerouslySetInnerHTML={{ __html: r.title.rendered }} />
+                    <h4>{splitTitle(stripHtml(r.title.rendered)).title}</h4>
                     <div className={styles.relMeta}>
                       <span>{catName[r.categories?.[0]] || ""}</span>
                       <span>·</span>

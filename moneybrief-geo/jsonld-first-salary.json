@@ -1,0 +1,92 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.moneybrief.net/guides/첫-월급-타면-뭐부터-해야-할까-사회초년생-돈-굴리기#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.moneybrief.net/guides/첫-월급-타면-뭐부터-해야-할까-사회초년생-돈-굴리기"
+      },
+      "headline": "첫 월급 타면 뭐부터 해야 할까? 사회초년생 돈 굴리기",
+      "description": "사회초년생을 위한 첫 월급 관리 순서를 단계별로 안내합니다. 월급명세서로 실수령액 확인, 통장 쪼개기(고정 50·저축 30·생활비 20), 비상금 3~6개월치 마련, 청년 정책상품(청년미래적금·청약통장), 신용 이력 쌓기, 연말정산 준비까지 정리했습니다.",
+      "image": "https://bcredit.host.whoisweb.net/wordpress/wp-content/uploads/2026/06/thumb-101.webp",
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08",
+      "author": {
+        "@type": "Organization",
+        "name": "money brief 편집팀",
+        "url": "https://www.moneybrief.net/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "money brief",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.moneybrief.net/logo.png"
+        }
+      },
+      "articleSection": "금융생활",
+      "inLanguage": "ko-KR",
+      "keywords": "사회초년생, 월급 관리, 첫 월급, 통장 쪼개기, 비상금, 청년미래적금, 청약통장, 연말정산, 재테크"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://www.moneybrief.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "금융가이드",
+          "item": "https://www.moneybrief.net/guides"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "금융생활",
+          "item": "https://www.moneybrief.net/guides?cat=금융생활"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "첫 월급 타면 뭐부터 해야 할까? 사회초년생 돈 굴리기",
+          "item": "https://www.moneybrief.net/guides/첫-월급-타면-뭐부터-해야-할까-사회초년생-돈-굴리기"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "첫 월급을 받으면 무엇부터 해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "먼저 월급명세서로 실수령액을 확인하고, 통장을 용도별로 분리(고정지출 50%·저축·투자 30%·생활비 20%)한 뒤, 비상금을 마련하고, 청년 정책상품을 활용하며, 신용 이력을 쌓고, 연말정산을 준비하는 순서를 추천합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "비상금은 얼마나 모아야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "생활비 3~6개월치를 파킹통장·CMA 등 언제든 뺄 수 있는 계좌에 두는 것이 목표입니다. 예를 들어 월 생활비가 150만 원이라면 450만~900만 원이 목표이며, 매달 조금씩 채워 나가면 됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "사회초년생이 챙기면 좋은 청년 정책상품은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "만 19~34세가 가입할 수 있는 청년미래적금(소득 구간별 정부기여금과 이자소득 비과세)과, 우대 금리·연계 대출 혜택이 있는 청년 주택드림 청약통장 등이 대표적입니다."
+          }
+        }
+      ]
+    }
+  ]
+}

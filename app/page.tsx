@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { wpFetch, stripHtml, getMediaMap, catImage, GUIDE_CATEGORIES } from "@/lib/wp";
 import { SITE_URL, guideUrl } from "@/lib/site";
+import { mainTitle } from "@/lib/title";
 import JsonLd from "@/components/JsonLd";
 import { baseNodes, webPageNode, itemListNode } from "@/lib/schema";
 
@@ -41,7 +42,8 @@ const catColor = (c: string) => CAT_COLORS[c] || { fg: "#4E5968", bg: "#F2F4F6" 
 function toCard(p: WpPost, catName: Record<number, string>, media: Record<number, string>): Card {
   return {
     slug: decodeURIComponent(p.slug),
-    title: stripHtml(p.title?.rendered || ""),
+    // 제목에 부제가 붙어 저장된 글이 있어 카드에는 첫 문장만 보여줍니다.
+    title: mainTitle(stripHtml(p.title?.rendered || "")),
     excerpt: stripHtml(p.excerpt?.rendered || ""),
     cat: catName[p.categories?.[0]] || "",
     read_time: Number(p.acf?.read_time) || 0,

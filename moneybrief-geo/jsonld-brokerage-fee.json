@@ -1,0 +1,92 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.moneybrief.net/guides/대출-중개수수료-요구는-100-불법-뜯긴-돈-받아내는-법#article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.moneybrief.net/guides/대출-중개수수료-요구는-100-불법-뜯긴-돈-받아내는-법"
+      },
+      "headline": "대출 중개수수료 요구는 100% 불법! 뜯긴 돈 받는 법",
+      "description": "대출 중개수수료·착수금 선입금 요구는 명칭과 무관하게 100% 불법입니다. 대부업법 제11조의2 제2항 근거, 처벌 수위, 사기범이 쓰는 위장 명칭, 예방 수칙, 이미 송금했을 때의 대처 순서(지급정지·112 신고·금융감독원 1332 상담)를 정리했습니다.",
+      "image": "https://bcredit.host.whoisweb.net/wordpress/wp-content/uploads/2026/06/thumb-25.webp",
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08",
+      "author": {
+        "@type": "Organization",
+        "name": "money brief 편집팀",
+        "url": "https://www.moneybrief.net/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "money brief",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.moneybrief.net/logo.png"
+        }
+      },
+      "articleSection": "금융사기예방",
+      "inLanguage": "ko-KR",
+      "keywords": "대출 중개수수료, 불법 사금융, 대부업법, 선입금 사기, 착수금, 작업대출, 금융사기예방, 지급정지"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://www.moneybrief.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "금융가이드",
+          "item": "https://www.moneybrief.net/guides"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "금융사기예방",
+          "item": "https://www.moneybrief.net/guides?cat=금융사기예방"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "대출 중개수수료 요구는 100% 불법! 뜯긴 돈 받는 법",
+          "item": "https://www.moneybrief.net/guides/대출-중개수수료-요구는-100-불법-뜯긴-돈-받아내는-법"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "대출받을 때 중개수수료를 내야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. 대부업법 제11조의2 제2항에 따라 명칭이 무엇이든 대출 중개와 관련해 이용자에게서 돈을 받는 것은 금지되어 있습니다. 이용자가 중개수수료를 낼 의무는 없습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 명목의 요구를 사기로 의심해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "중개수수료·소개비·사례금·착수금·진행비·서류 처리비·전산 작업비·신용등급 상향비·보증보험료·예치금·공증료 등 어떤 이름이든 대출 전 선입금을 요구하면 사기 신호입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "이미 돈을 보냈다면 어떻게 해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "① 송금한 은행 고객센터에 즉시 지급정지를 요청하고 ② 경찰청 112에 신고해 사건사고사실확인원을 받고 ③ 금융감독원 1332로 불법사금융 피해 상담을 받고 ④ 통화 녹음·문자·이체 내역 등 증거를 모두 보관하세요."
+          }
+        }
+      ]
+    }
+  ]
+}

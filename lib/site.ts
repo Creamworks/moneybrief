@@ -1,10 +1,12 @@
 // 사이트 공통 상수 + 사이트맵/llms.txt 가 함께 쓰는 글 목록 조회
 import { wpUrl, stripHtml, GUIDE_CATEGORIES } from "@/lib/wp";
+import { mainTitle } from "@/lib/title";
 
 export const SITE_URL = (process.env.SITE_URL || "https://moneybrief.net").replace(/\/$/, "");
 export const SITE_NAME = "money brief";
 
 export type SitePost = {
+  id: number;
   slug: string;
   title: string;
   excerpt: string;
@@ -30,6 +32,7 @@ async function wpCached<T>(path: string): Promise<T | null> {
 }
 
 type WpPost = {
+  id: number;
   slug: string;
   title: { rendered: string };
   excerpt: { rendered: string };
@@ -52,13 +55,15 @@ export async function getAllPosts(): Promise<SitePost[]> {
   const out: SitePost[] = [];
   for (let page = 1; page <= 10; page++) {
     const batch = await wpCached<WpPost[]>(
-      `/wp/v2/posts?categories=${ids.join(",")}&per_page=100&page=${page}&orderby=date&order=desc&_fields=slug,title,excerpt,date,modified,categories`,
+      `/wp/v2/posts?categories=${ids.join(",")}&per_page=100&page=${page}&orderby=date&order=desc&_fields=id,slug,title,excerpt,date,modified,categories`,
     );
     if (!batch || !batch.length) break;
     for (const p of batch) {
       out.push({
+        id: p.id,
         slug: decodeURIComponent(p.slug),
-        title: stripHtml(p.title?.rendered || ""),
+        // llms.txt 목록에도 부제가 붙은 제목이 그대로 나가지 않게 첫 문장만 사용
+        title: mainTitle(stripHtml(p.title?.rendered || "")),
         excerpt: stripHtml(p.excerpt?.rendered || "").slice(0, 160),
         cat: (p.categories || []).map((id) => catName[id]).find((n) => GUIDE_CATEGORIES.includes(n)) || "",
         date: p.date,
@@ -70,4 +75,12 @@ export async function getAllPosts(): Promise<SitePost[]> {
   return out;
 }
 
+/** 사이트맵·JSON-LD용 — 퍼센트 인코딩 (XML 사이트맵 규격 요구사항) */
 export const guideUrl = (slug: string) => `${SITE_URL}/guides/${encodeURIComponent(slug)}`;
+
+/**
+ * llms.txt용 — 한글을 그대로 노출.
+ * 같은 URL이지만 사람이 읽는 문서에서는 인코딩되지 않은 쪽이 훨씬 읽기 쉽고,
+ * 레퍼런스(moneybrief-geo/llms.txt) 표기와도 일치해요.
+ */
+export const guideUrlReadable = (slug: string) => `${SITE_URL}/guides/${slug}`;
