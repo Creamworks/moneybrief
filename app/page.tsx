@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "money brief — 금융교육 콘텐츠 허브",
   description:
     "money brief는 ㈜바로크레디트대부가 만든 금융교육 콘텐츠예요. 대부업·신용·정부지원을 쉬운 말로, 정확하게 알려드려요.",
+  alternates: { canonical: "/" },
 };
 
 type WpCat = { id: number; name: string; count?: number };
