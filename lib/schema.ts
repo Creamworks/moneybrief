@@ -38,8 +38,8 @@ export const SAME_AS: string[] = [
 
 export const PARENT_SAME_AS: string[] = [
   "https://www.barocredit.com",
-  // "https://blog.naver.com/____",
-  // "https://www.youtube.com/@____",
+  "https://www.youtube.com/@barobaroloan",
+  "https://blog.naver.com/barobaroloan1899",
   // "https://www.instagram.com/____",
   // "https://map.naver.com/p/entry/place/____",
 ];
