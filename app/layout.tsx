@@ -13,7 +13,9 @@ const SITE_URL = process.env.SITE_URL || "https://www.moneybrief.net";
  *   GOOGLE_SITE_VERIFICATION  — Google Search Console > 소유권 확인 > HTML 태그
  *   NAVER_SITE_VERIFICATION   — 네이버 서치어드바이저 > 사이트 소유확인 > HTML 태그
  */
-const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
+// 확인 코드는 비밀값이 아니에요(페이지 소스에 공개됨). 환경변수가 있으면 그 값이 우선해요.
+const googleVerification =
+  process.env.GOOGLE_SITE_VERIFICATION || "1v7vFaFfuFhKSe3GW54HiwZyc7bl4C7erD0mdBtvUjs";
 const naverVerification = process.env.NAVER_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
