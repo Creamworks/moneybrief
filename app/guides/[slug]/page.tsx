@@ -223,8 +223,6 @@ export default async function GuideDetail({
               <div className={styles.dates}>
                 <span>발행 <span className="tnum">{fmt(post.date)}</span></span>
                 <span>·</span>
-                <span>최종 수정 <span className="tnum">{fmt(post.modified)}</span></span>
-                <span>·</span>
                 <span>읽는 시간 <span className="tnum">{readTime}</span>분</span>
                 <span>·</span>
                 <HelpfulCount slug={post.slug} count={helpfulCount} />
