@@ -2,7 +2,7 @@
 import { wpUrl, stripHtml, GUIDE_CATEGORIES } from "@/lib/wp";
 import { mainTitle } from "@/lib/title";
 
-export const SITE_URL = (process.env.SITE_URL || "https://moneybrief.net").replace(/\/$/, "");
+export const SITE_URL = (process.env.SITE_URL || "https://www.moneybrief.net").replace(/\/$/, "");
 export const SITE_NAME = "money brief";
 
 export type SitePost = {
