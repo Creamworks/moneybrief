@@ -18,6 +18,8 @@ const googleVerification =
   process.env.GOOGLE_SITE_VERIFICATION || "1v7vFaFfuFhKSe3GW54HiwZyc7bl4C7erD0mdBtvUjs";
 const naverVerification =
   process.env.NAVER_SITE_VERIFICATION || "56443ef107dccf3af56a47ede1c73e4ff988efb6";
+const bingVerification =
+  process.env.BING_SITE_VERIFICATION || "F1D3F2752BEAEDBC1623145847D78812";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,12 +51,17 @@ export const metadata: Metadata = {
     description: "신용·대출·금융사기를 쉬운 말로, 정확하게 검증해 드려요.",
     images: ["/img/og-default.png"],
   },
-  ...(googleVerification || naverVerification
+  ...(googleVerification || naverVerification || bingVerification
     ? {
         verification: {
           ...(googleVerification ? { google: googleVerification } : {}),
-          ...(naverVerification
-            ? { other: { "naver-site-verification": naverVerification } }
+          ...(naverVerification || bingVerification
+            ? {
+                other: {
+                  ...(naverVerification ? { "naver-site-verification": naverVerification } : {}),
+                  ...(bingVerification ? { "msvalidate.01": bingVerification } : {}),
+                },
+              }
             : {}),
         },
       }
