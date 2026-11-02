@@ -16,7 +16,8 @@ const SITE_URL = process.env.SITE_URL || "https://www.moneybrief.net";
 // 확인 코드는 비밀값이 아니에요(페이지 소스에 공개됨). 환경변수가 있으면 그 값이 우선해요.
 const googleVerification =
   process.env.GOOGLE_SITE_VERIFICATION || "1v7vFaFfuFhKSe3GW54HiwZyc7bl4C7erD0mdBtvUjs";
-const naverVerification = process.env.NAVER_SITE_VERIFICATION;
+const naverVerification =
+  process.env.NAVER_SITE_VERIFICATION || "56443ef107dccf3af56a47ede1c73e4ff988efb6";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
