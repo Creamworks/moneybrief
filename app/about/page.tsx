@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "운영 원칙 — money brief",
   description:
     "money brief의 콘텐츠 제작 원칙과 금융소비자 보호정책, 운영사 정보를 안내해요.",
+  alternates: { canonical: "/about" },
 };
 
 const PRINCIPLES = [
