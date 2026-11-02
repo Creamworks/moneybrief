@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "금융계산기 — money brief",
   description:
     "원리금·대출이자·DSR·중도상환수수료를 슬라이더로 바로 계산해 보세요. 대출 실행 전 부담을 정확한 숫자로 확인할 수 있어요.",
+  alternates: { canonical: "/calculator" },
 };
 
 export default async function CalculatorPage({
