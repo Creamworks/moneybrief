@@ -484,6 +484,31 @@ export function extractCitations(html?: string): { name: string; url?: string }[
     .map((name) => ({ name }));
 }
 
+/**
+ * 본문 끝의 "출처" 코너를 인용(citation) 목록으로 변환.
+ * 문단 전체가 "출처"(또는 "참고 자료")뿐인 줄 바로 뒤의 글머리 목록(li)을 읽어요.
+ * 링크가 있으면 이름+주소, 없으면 이름만 담아요.
+ * "출처를 알 수 없는 앱 설치"처럼 본문 속에 섞인 단어는 문단 전체가 "출처"일 때만 인식하므로 걸리지 않아요.
+ */
+export function extractSourcesFromHtml(html: string): { name: string; url?: string }[] {
+  if (!html) return [];
+  const head =
+    /<(p|h[2-6]|div)[^>]*>(?:<[^>]+>|\s|[^\s<>\w가-힣])*(?:출처|참고\s*자료|출처\s*및\s*참고\s*자료)(?:<[^>]+>|\s)*<\/\1>/i;
+  const m = head.exec(html);
+  if (!m) return [];
+  const rest = html.slice(m.index + m[0].length);
+  const out: { name: string; url?: string }[] = [];
+  const liRe = /<li[^>]*>([\s\S]*?)<\/li>/gi;
+  let li: RegExpExecArray | null;
+  while ((li = liRe.exec(rest)) !== null && out.length < 12) {
+    const a = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i.exec(li[1]);
+    const name = stripHtml(a ? a[2] : li[1]).replace(/\s+/g, " ").trim();
+    if (!name) continue;
+    out.push(a ? { name, url: a[1] } : { name });
+  }
+  return out;
+}
+
 /** 본문 글자 수(한국어 기준 대략치) */
 export const countWords = (html: string) => stripHtml(html).replace(/\s+/g, "").length;
 

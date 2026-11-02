@@ -21,6 +21,7 @@ import {
   articleNode,
   extractFaqFromHtml,
   extractCitations,
+  extractSourcesFromHtml,
   countWords,
   type Crumb,
 } from "@/lib/schema";
@@ -190,7 +191,10 @@ export default async function GuideDetail({
       keywords,
       wordCount: countWords(rawBody),
       readMinutes: readTime,
-      citations: extractCitations(post.acf?.sources),
+      // 1순위: 본문 끝 "출처" 코너, 없으면 기존 출처 칸(acf.sources)
+      citations: extractSourcesFromHtml(rawBody).length
+        ? extractSourcesFromHtml(rawBody)
+        : extractCitations(post.acf?.sources),
     }),
   ];
 
