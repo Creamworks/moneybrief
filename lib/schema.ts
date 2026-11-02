@@ -8,7 +8,7 @@
  *  3) 화면에 없는 정보는 넣지 않아요. 구조화 데이터와 실제 화면이 다르면 스팸으로 판정될 수 있어요.
  */
 import { SITE_URL, SITE_NAME } from "@/lib/site";
-import { stripHtml } from "@/lib/wp";
+import { stripHtml, decodeEntities } from "@/lib/wp";
 
 export type Node = Record<string, unknown>;
 
@@ -377,8 +377,69 @@ export function itemListNode(
 const QUESTION_TAIL =
   /(\?|나요|가요|까요|는가|은가|인가|할까|될까|무엇|어떻게|왜|어디서|언제|얼마)\s*$/;
 
+/**
+ * 본문 끝의 "자주 묻는 질문" 코너(Q. … / A. …)를 FAQ로 변환.
+ * 소제목(H3)이 아니라 굵은 글씨 문단으로 쓰인 형식이라 아래 H3 추출로는 잡히지 않아요.
+ * 화면에 보이는 질문·답변을 그대로 쓰므로 구조화 데이터와 화면 내용이 항상 일치해요.
+ * A. 표시가 없는 질문은 답변을 알 수 없어 건너뜁니다.
+ */
+const EMOJI = /[\uD83C-\uD83E][\uDC00-\uDFFF]|[\u2600-\u27BF\uFE0F\u200D]/g;
+
+export function extractQaFromHtml(html: string, limit = 10): FaqItem[] {
+  if (!html) return [];
+  const text = decodeEntities(
+    html
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<\/(p|li|h[1-6]|div|ul|ol|figure)>/gi, "\n\n")
+      .replace(/<[^>]+>/g, ""),
+  ).replace(/\r/g, "");
+  const marker = text.search(/자주\s*묻는\s*질문/);
+  if (marker < 0) return [];
+  const lines = text.slice(marker).replace(/^[^\n]*\n/, "").split("\n");
+
+  const out: FaqItem[] = [];
+  let cur: { q: string; a: string } | null = null;
+  let mode: "q" | "a" | null = null;
+  const clean = (s: string) => s.replace(EMOJI, "").replace(/\s+/g, " ").trim();
+  const flush = () => {
+    if (cur && cur.q && cur.a.trim().length >= 10) {
+      out.push({ q: clean(cur.q), a: clean(cur.a).slice(0, 900) });
+    }
+    cur = null;
+    mode = null;
+  };
+
+  for (const raw of lines) {
+    const l = raw.trim();
+    if (/^Q\s*[.:)]/.test(l)) {
+      flush();
+      cur = { q: l.replace(/^Q\s*[.:)]\s*/, ""), a: "" };
+      mode = "q";
+      continue;
+    }
+    if (cur && /^A\s*[.:)]/.test(l)) {
+      cur.a = l.replace(/^A\s*[.:)]\s*/, "");
+      mode = "a";
+      continue;
+    }
+    if (!cur) continue;
+    if (l === "") {
+      // 답변이 끝난 뒤 빈 줄이 나오면 그 항목은 종료(뒤따르는 안내문이 섞이지 않게)
+      if (mode === "a" && cur.a) flush();
+      continue;
+    }
+    if (mode === "q") cur.q += " " + l;
+    else if (mode === "a") cur.a += " " + l;
+  }
+  flush();
+  return out.slice(0, limit);
+}
+
 export function extractFaqFromHtml(html: string, limit = 10): FaqItem[] {
   if (!html) return [];
+  // 1순위: 본문 끝 "자주 묻는 질문" 코너(Q./A.). 없으면 아래 H3 방식으로 대체.
+  const qa = extractQaFromHtml(html, limit);
+  if (qa.length) return qa;
   const out: FaqItem[] = [];
   // H3 위치를 모두 찾고, 그 다음 제목(h2/h3) 전까지를 답변 본문으로 봅니다.
   const re = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
