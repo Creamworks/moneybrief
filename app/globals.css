@@ -52,7 +52,7 @@ a {
 }
 
 .tnum {
-  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
   font-feature-settings: "tnum" 1;
   font-variant-numeric: tabular-nums;
 }
