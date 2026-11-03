@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import { GtmScript, GtmNoScript } from "@/components/GoogleTagManager";
+
+// 숫자·영문용 글꼴. 빌드 때 우리 서버에 내려받아 직접 제공해요 (구글 서버 요청 없음).
+const plexMono = IBM_Plex_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-plex-mono",
+});
 
 const SITE_URL = process.env.SITE_URL || "https://www.moneybrief.net";
 
@@ -74,18 +83,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={plexMono.variable}>
       <head>
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
         />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
