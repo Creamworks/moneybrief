@@ -22,7 +22,8 @@ export const stripHtml = (s: string) =>
 
 export async function wpFetch<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(wpUrl(path), { cache: "no-store" });
+    // 워드프레스 응답을 60초 동안 저장해 두고 재사용해요. (새 글·수정 내용은 최대 1분 뒤 반영)
+    const res = await fetch(wpUrl(path), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
